@@ -12,32 +12,14 @@
     <div id="app">
       <div class="nav-bar"></div>
       <div class="cart">Cart {{cart}}</div>
-      <div class="product-display">
-        <div class="product-container">
-          <div class="product-image">
-            <!-- image goes here -->
-              <img :src="image" />
-          </div>
-          <div class="product-info">
-            <h1>{{ product }}</h1>
-            <p v-if="inventory > 10">In Stock</p>
-            <p v-else-if="inventory <= 10 && inventory > 0">Almost sold out!</p>
-            <p v-else="inventory">Out of Stock</p>
-            <p v-if="onSale">On Sale!</p>
-            <ul>
-              <li v-for="detail in details" :key="detail">{{detail}}</li>
-            </ul>
-            <div v-for="variant in variants" :key="variant.id" @mouseover="handleColorHover(variant.color)"
-            :style="{'background-color': variant.color}" class="color-circle"></div>
-            <button class="button" @click="updateCart">Add to cart</button>
-            <button class="button" @click="removeCart">Remove from cart</button>
-          </div>
-        </div>
-      </div>
+      <product-display></product-display>
+      
     </div>
 
     <!-- Import App -->
     <script src="./main.js"></script>
+
+    <script src="./components/productDisplay.js"></script>
 
     <!-- Mount App -->
     <script>
