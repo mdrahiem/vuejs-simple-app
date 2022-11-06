@@ -1,4 +1,10 @@
 app.component("product-display", {
+  props: {
+    premium: {
+      type: Boolean,
+      required: true,
+    },
+  },
   template: /*html*/ `
   <div class="product-display">
     <div class="product-container">
@@ -12,6 +18,7 @@ app.component("product-display", {
         <p v-else-if="inventory <= 10 && inventory > 0">Almost sold out!</p>
         <p v-else="inventory">Out of Stock</p>
         <p v-if="onSale">On Sale!</p>
+        <p>{{shipping}}</p>
         <ul>
           <li v-for="detail in details" :key="detail">{{detail}}</li>
         </ul>
@@ -50,6 +57,14 @@ app.component("product-display", {
       if (this.cart > 0) {
         this.cart--;
       }
+    },
+  },
+  computed: {
+    shipping() {
+      if (this.premium) {
+        return "free";
+      }
+      return "2.99";
     },
   },
 });
