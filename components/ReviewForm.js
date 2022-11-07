@@ -33,7 +33,7 @@ app.component("review-form", {
   },
   methods: {
     onSubmit() {
-      if (!this.name || !this.review || !this.rating || this.recommend)
+      if (!this.name || !this.review || !this.rating || !this.recommend)
         return alert("Complete review is mandatory!");
       const { name, review, rating, recommend } = this;
       const reviewObj = {

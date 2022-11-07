@@ -29,8 +29,7 @@ app.component("product-display", {
       </div>
     </div>
     <review-form @review-submitted="addReview"></review-form>
-    <review-list v-if="reviews" :reviews="reviews"></review-list>
-    {{reviews.length}}
+    <review-list v-if="reviews.length" :reviews="reviews"></review-list>
   </div>`,
   data() {
     return {
