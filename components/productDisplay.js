@@ -35,6 +35,7 @@ app.component("product-display", {
       image: "./assets/images/socks_green.jpg",
       inventory: 11,
       onSale: false,
+      selectedVariant: 0,
       details: ["50% cotton", "30% wool", "20% polyester"],
       variants: [
         { id: 2234, color: "green" },
@@ -44,7 +45,7 @@ app.component("product-display", {
   },
   methods: {
     updateCart() {
-      this.cart++;
+      this.$emit("add-to-cart", this.selectedVariant);
     },
     handleColorHover(color) {
       if (color === "green") {
@@ -52,11 +53,10 @@ app.component("product-display", {
       } else {
         this.image = "./assets/images/socks_blue.jpg";
       }
+      this.selectedVariant = this.variants.find((v) => v.color === color).id;
     },
     removeCart() {
-      if (this.cart > 0) {
-        this.cart--;
-      }
+      this.$emit("remove-from-cart", this.selectedVariant);
     },
   },
   computed: {
